@@ -3,8 +3,16 @@
 # Call the docker file for afni to do the preliminary set up of ubuntu:trusty
 FROM bids/base_afni
 
-RUN echo 'Hello from inside the docker???'
-RUN mkdir iamafoldercreatedbythedocker
+#CMD echo "Hello from inside the docker???"
+#CMD mkdir ./iamafoldercreatedbythedocker
+
+
+CMD echo "Hello from inside the docker???"
+CMD ["/bin/bash", "-c", "echo Hello, Hello exec form"]
+RUN echo "Hello from run shell form"
+RUN ["/bin/bash", "-c", "echo Hello, Hello run exec command"]
+#RUN echo "Hello from run shell form"
+ENTRYPOINT ["/bin/bash", "-c", "echo Hello, Hello run exec command"]
 
 # Configure environment and set to path
 ENV AFNI_PATH=/usr/lib/afni/bin

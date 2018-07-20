@@ -231,9 +231,8 @@
             "description":"Whether to output spms for all the optimal pipelines. (oppni --output_nii_also option)"
           } ],
     "output-files":[{
-            "value-key": "[MASK]",
             "description": "Log of the oppni status check of the project", 
-            "path-template": "[MASK]_status_check.log", 
+            "path-template": "Oppni_status_check.log", 
             "optional": false, 
             "id": "statuslogoutput", 
             "name": "Statis Log Output"
