@@ -1,5 +1,9 @@
 #Updated version from the git repo
+# Not working?
+#FROM bids/base_afi
 
+# FROM
+#######################################################################
 # Call the docker file for afni to do the preliminary set up of ubuntu:trusty
 FROM ubuntu:trusty
 
@@ -46,22 +50,19 @@ ENV FSLTCLSH=/usr/bin/tclsh
 ENV FSLWISH=/usr/bin/wish
 ENV FSLOUTPUTTYPE=NIFTI_GZ
 
-
 ##############################################
+# Singularity shell ... echo works on new varibles but
+# Singularity exec ... echo does not find the created variables
 
 
-
-
-
-#CMD echo "Hello from inside the docker???"
-#CMD mkdir ./iamafoldercreatedbythedocker
-
-
+# These dont ever work
 CMD echo "Hello from inside the docker???"
 CMD ["/bin/bash", "-c", "echo Hello, Hello exec form"]
 RUN echo "Hello from run shell form"
 RUN ["/bin/bash", "-c", "echo Hello, Hello run exec command"]
 #RUN echo "Hello from run shell form"
+
+# This works only if i Singularity run the image (runscript)
 ENTRYPOINT ["/bin/bash", "-c", "echo Hello, Hello run exec command"]
 
 # Configure environment and set to path

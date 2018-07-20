@@ -21,13 +21,15 @@ echo ">>> $OPPNI_COMMAND"
 
 # Build the TEST DOCKER AUTO BUILD
 echo 'Building the Docker...'
-singularity build testdocker.img docker://andrewlofts/oppni_cbrain
-#singularity exec 
+#These seem to do the same thing, but with different names
+#singularity build testdocker.img docker://andrewlofts/oppni_cbrain
+singularity pull docker://andrewlofts/oppni_cbrain
 
 
 
 #5. Tells the docker to execute the OPPNI Pipeline
 echo 'Executing OPPNI inside the docker...'
+#These are the commands i want to make the image do, would it be better to make this my [ENTERYPOINT], and Singularity run the image
 #####singularity exec testdocker.img which python
 #####singularity exec testdocker.img $OPPNI_COMMAND
 
@@ -41,7 +43,7 @@ echo "Input Location >>> ${OPPNI_ARGS[2]}"
 ######singularity exec doppni.img "{OPPNI_ARGS[0]}" -s "${OPPNI_ARGS[2]}"
 
 #7. Aquires the OPPNI status log file and indicates to CBRAIN that the job is complete
-echo 'Collecting OPPNI loga status for CBRAIN job completion...'
+echo 'Collecting OPPNI log status for CBRAIN job completion...'
 
 
 
