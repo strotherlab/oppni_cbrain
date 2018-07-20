@@ -21,7 +21,7 @@ echo ">>> $OPPNI_COMMAND"
 
 # Build the TEST DOCKER AUTO BUILD
 echo 'Building the Docker...'
-singularity build testdocker.img docker://andrewlofts/testdocker
+singularity build testdocker.img docker://andrewlofts/oppni_cbrain
 #singularity exec 
 
 
