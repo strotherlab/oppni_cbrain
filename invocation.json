@@ -1,7 +1,7 @@
 {
     "oppni_location": "./oppni_location",
-    "in_file": "./testinput.txt",
-    "pipeline_file": "./testinput2.txt",
+    "in_file": "./Sample_Input_File.txt",
+    "pipeline_file": "./Sample_pipeline_file.txt",
     "analysis_type": "LDA",
-    "reference_file": "./testinput3.txt"
+    "reference_file": "./Sample_reference.nii"
 }

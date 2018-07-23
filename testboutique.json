@@ -3,7 +3,12 @@
     "tool-version": "1.0.0",
     "schema-version": "0.5",
     "description": "Boutique JSON Descriptor for the TEST tool.",
-    "command-line": "bash testbuilder.sh [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO]",
+    "command-line": "python [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 4",
+    "container-image":{
+            "image": "andrewlofts/oppni_cbrain",
+            "index": "docker://", 
+            "type": "singularity"
+          },
     "inputs":[{
             "value-key": "[OPPNI_LOCATION]", 
             "type": "File", 
@@ -35,6 +40,16 @@
             "value-key": "[ANALYSIS_TYPE]", 
             "type": "String", 
             "optional": false, 
+            "value-choices":[
+		"LDA",
+		"GNB",
+		"GLM",
+		"erCVA",
+		"erGNB",
+		"erGLM",
+		"SCONN",
+		"NONE"
+	     ],
             "id": "analysis_type", 
             "name": "Anaylsis Type",
             "description":"Chosen analysis model (LDA, GNB, GLM, erCVA, erGNB, erGLM, SCONN, NONE). (oppni -a option)"
@@ -231,14 +246,10 @@
             "description":"Whether to output spms for all the optimal pipelines. (oppni --output_nii_also option)"
           } ],
     "output-files":[{
-            "description": "Log of the oppni status check of the project", 
-            "path-template": "Oppni_status_check.log", 
+            "description": "Log of the oppni status check of the project, existence implies the complete job was successfull. Otehrwise a log file with a different name is saved.", 
+            "path-template": "Sample_OppniStatus_Complete.log", 
             "optional": false, 
             "id": "statuslogoutput", 
             "name": "Statis Log Output"
-         }],
-    "error-codes":[{
-            "code": 1,
-            "description": "Crashed"
-        }]
+         }]
 }
