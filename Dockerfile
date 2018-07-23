@@ -39,7 +39,7 @@ ENV FSLWISH=/usr/bin/wish
 ENV FSLOUTPUTTYPE=NIFTI_GZ
 
 
-OPPNI related
+# OPPNI related
 #########################################
 
 ENV AFNI_PATH=/usr/lib/afni/bin
