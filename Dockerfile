@@ -48,10 +48,10 @@ ENV FSL_PATH $FSLDIR/bin/
 ENV FSLOUTPUTTYPE=NIFTI_GZ
 ENV PATH $AFNI_PATH:$FSL_PATH:$OPPNI_PATH:$PATH
 
-
+RUN apt-get update
 RUN apt-get install git
 #NEED SUDO TO INSTALL GIT INSIDE DOCKER
-git clone --branch octave https://github.com/AndrewLofts/oppni.git
+RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
 #OPPNI IS PRIVATE AT THE MOMENT!
 
 
