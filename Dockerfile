@@ -51,7 +51,8 @@ ENV PATH $AFNI_PATH:$FSL_PATH:$OPPNI_PATH:$PATH
 RUN apt-get update
 RUN apt-get install git -y
 #NEED SUDO TO INSTALL GIT INSIDE DOCKER
-RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
+RUN git clone --branch octave https://github.com/AndrewLofts/planets.git
+#RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
 #OPPNI IS PRIVATE AT THE MOMENT!
 
 
@@ -62,7 +63,7 @@ RUN apt-get install python -y
 # Gets Octave
 # NEED SUDO FOR INSTALL INSIDE DOCKER
 RUN  add-apt-repository ppa:octave/stable -y
-R#UN  apt-get update
+#RUN  apt-get update
 RUN  apt-get install octave -y
 
 
