@@ -49,7 +49,7 @@ ENV FSLOUTPUTTYPE=NIFTI_GZ
 ENV PATH $AFNI_PATH:$FSL_PATH:$OPPNI_PATH:$PATH
 
 RUN apt-get update
-RUN apt-get install git
+RUN apt-get install git -y
 #NEED SUDO TO INSTALL GIT INSIDE DOCKER
 RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
 #OPPNI IS PRIVATE AT THE MOMENT!
@@ -57,13 +57,13 @@ RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
 
 # Gets python 
 # ALREADY HAS PYTHON, NEED SUDO FOR DIFF INSTALL
-RUN apt-get install -y python
+RUN apt-get install python -y
 
 # Gets Octave
 # NEED SUDO FOR INSTALL INSIDE DOCKER
-RUN  add-apt-repository ppa:octave/stable
-RUN  apt-get update
-RUN  apt-get install octave
+RUN  add-apt-repository ppa:octave/stable -y
+R#UN  apt-get update
+RUN  apt-get install octave -y
 
 
 
