@@ -246,10 +246,10 @@
             "description":"Whether to output spms for all the optimal pipelines. (oppni --output_nii_also option)"
           } ],
     "output-files":[{
-            "description": "Log of the oppni status check of the project, existence implies the complete job was successfull. Otehrwise a log file with a different name is saved.", 
-            "path-template": "Sample_OppniStatus_Complete.log", 
+            "description": "Log of the oppni status check of the project, existence implies the complete job was successfull. Otherwise a log file with a different name is saved.", 
+            "path-template": "Task_Complete_CBRAIN.txt", 
             "optional": false, 
-            "id": "statuslogoutput", 
-            "name": "Statis Log Output"
+            "id": "completion_file_indicator", 
+            "name": "Completion File Indicator"
          }]
 }
