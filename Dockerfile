@@ -72,12 +72,9 @@ RUN git clone https://github.com/AndrewLofts/planets.git
 
 # Gets Octave
 # NEED SUDO FOR INSTALL INSIDE DOCKER
-RUN  add-apt-repository -qy ppa:octave/stable
+#RUN  add-apt-repository -qy ppa:octave/stable
 #RUN  apt-get update
 RUN  apt-get install -qy octave
 
 
-
-###################################################
-# Docker is commanded to do OPPNI status check from external bashfile...
-# Need to make a file?????
+#OPPNI IS DOCKED!
