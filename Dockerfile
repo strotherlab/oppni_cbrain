@@ -5,36 +5,36 @@ FROM ubuntu:trusty
 # No bids validation...
 
 ## Install the validator
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
-    apt-get remove -y curl && \
-    apt-get install -y nodejs && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update 
+RUN    apt-get install -y curl 
+RUN    curl -sL https://deb.nodesource.com/setup_4.x | bash - 
+RUN    apt-get remove -y curl 
+RUN    apt-get install -y nodejs 
+RUN    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN npm install -g bids-validator@0.19.2
 
 # AFNI (bids/base_afni)
 ####################################
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -sSL http://neuro.debian.net/lists/trusty.us-ca.full >> /etc/apt/sources.list.d/neurodebian.sources.list && \
-    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 && \
-    apt-get update && \
-    apt-get remove -y curl && \
-    apt-get install -y afni && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update 
+RUN    apt-get install -y curl
+RUN    curl -sSL http://neuro.debian.net/lists/trusty.us-ca.full >> /etc/apt/sources.list.d/neurodebian.sources.list 
+RUN    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 
+RUN    apt-get update
+RUN    apt-get remove -y curl
+RUN    apt-get install -y afni
+RUN    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # FSL (bids/base_fsl)
 #####################################
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -sSL http://neuro.debian.net/lists/trusty.us-ca.full >> /etc/apt/sources.list.d/neurodebian.sources.list && \
-    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 && \
-    apt-get update && \
-    apt-get remove -y curl && \
-    apt-get install -y fsl-core && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update 
+RUN    apt-get install -y curl 
+RUN    curl -sSL http://neuro.debian.net/lists/trusty.us-ca.full >> /etc/apt/sources.list.d/neurodebian.sources.list 
+RUN    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 
+RUN    apt-get update 
+RUN    apt-get remove -y curl 
+RUN    apt-get install -y fsl-core
+RUN    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 # Configure environment
