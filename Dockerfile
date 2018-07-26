@@ -4,6 +4,16 @@
 FROM ubuntu:trusty
 # No bids validation...
 
+## Install the validator
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
+    apt-get remove -y curl && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN npm install -g bids-validator@0.19.2
+
 # AFNI (bids/base_afni)
 ####################################
 RUN apt-get update && \
@@ -49,7 +59,7 @@ ENV FSLOUTPUTTYPE=NIFTI_GZ
 ENV PATH $AFNI_PATH:$FSL_PATH:$OPPNI_PATH:$PATH
 
 RUN apt-get update
-RUN apt-get install git -y
+RUN apt-get install -qy git
 #NEED SUDO TO INSTALL GIT INSIDE DOCKER
 RUN git clone --branch octave https://github.com/AndrewLofts/planets.git
 #RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
@@ -58,13 +68,13 @@ RUN git clone --branch octave https://github.com/AndrewLofts/planets.git
 
 # Gets python 
 # ALREADY HAS PYTHON, NEED SUDO FOR DIFF INSTALL
-RUN apt-get install python -y
+#RUN apt-get install python 
 
 # Gets Octave
 # NEED SUDO FOR INSTALL INSIDE DOCKER
-RUN  add-apt-repository ppa:octave/stable -y
+RUN  add-apt-repository -qy ppa:octave/stable
 #RUN  apt-get update
-RUN  apt-get install octave -y
+RUN  apt-get install -qy octave
 
 
 
