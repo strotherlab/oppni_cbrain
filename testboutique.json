@@ -11,11 +11,12 @@
           },
     "inputs":[{
             "value-key": "[OPPNI_LOCATION]", 
-            "type": "File", 
-            "optional": false, 
+            "type": "String", 
+            "optional": true, 
             "id": "oppni_location", 
             "name": "OPPNI file",
-            "description":"Path to the oppni.py version you are using"
+            "default-value": "./oppni/cPRONTO/oppni.py",
+            "description":"Path to the oppni.py version you are using, example ./oppni/cPRONTO/oppni.py"
          },
          {
             "command-line-flag": "-i",
