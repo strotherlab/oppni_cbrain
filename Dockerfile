@@ -56,24 +56,24 @@ ENV AFNI_PATH=/usr/lib/afni/bin
 ENV FSLDIR=/usr/share/fsl/5.0
 ENV FSL_PATH $FSLDIR/bin/
 ENV FSLOUTPUTTYPE=NIFTI_GZ
+# Hardcoded location from git pull
+ENV OPPNI_PATH=/oppni
 ENV PATH $AFNI_PATH:$FSL_PATH:$OPPNI_PATH:$PATH
 
+
+# Git
 RUN apt-get update
 RUN apt-get install -qy git
-#NEED SUDO TO INSTALL GIT INSIDE DOCKER
+# TAKE A TEST REPO THATS PUBLIC FOR NOW
 RUN git clone https://github.com/AndrewLofts/planets.git
+# OPPNI IS PRIVATE AT THE MOMENT!
 #RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
-#OPPNI IS PRIVATE AT THE MOMENT!
+#RUN git clone --branch octave https://github.com/raamana/oppni.git
 
-
-# Gets python 
-# ALREADY HAS PYTHON, NEED SUDO FOR DIFF INSTALL
+# Python
 #RUN apt-get install python 
 
 # Gets Octave
-# NEED SUDO FOR INSTALL INSIDE DOCKER
-#RUN  add-apt-repository -qy ppa:octave/stable
-#RUN  apt-get update
 RUN  apt-get install -qy octave
 
 
