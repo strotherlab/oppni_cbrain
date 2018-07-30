@@ -4,7 +4,7 @@
     "schema-version": "0.5",
     "description": "Boutique JSON Descriptor for the TEST tool.",
     "author":"Strother Lab, Baycrest",
-    "command-line": "echo python [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 4; python [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 4",
+    "command-line": "echo python [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [ANALYSIS_TYPE_ADJUSTMENTS] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 4; python [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [ANALYSIS_TYPE_ADJUSTMENTS] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 4",
     "container-image":{
             "image": "andrewlofts/oppni_cbrain",
             "index": "docker://", 
@@ -60,6 +60,14 @@
             "name": "Anaylsis Type",
             "description":"Chosen analysis model (LDA, GNB, GLM, erCVA, erGNB, erGLM, SCONN, NONE). (oppni -a option)"
          },        
+         {
+            "value-key": "[ANALYSIS_TYPE_ADJUSTMENTS]", 
+            "type": "String", 
+            "optional": true, 
+            "id": "analysis_type_adjustments", 
+            "name": "Anaylsis Type Adjustments",
+            "description":"Some analysis models allow for slight adjustments. Type in the flags. --decision_model,--drf,--Nblock,--WIND,--subspace,--spm. Please review the OPPNI manual to learn more."
+         },   
          {
             "command-line-flag": "-r",
             "value-key": "[REFERENCE_FILE]", 
@@ -121,8 +129,7 @@
             "value-choices":[
 		"P",
 		"R",
-		"dPR",
-		""
+		"dPR"
 	     ],
             "default-value": "dPR",
             "id": "metric", 
@@ -137,13 +144,12 @@
             "value-choices":[
 		"1-2",
 		"2-3",
-                "nocontrast",
-		""
+                "None"
 	     ],
             "default-value": "1-2",
             "id": "contrast", 
             "name": "Contrast Combination",
-            "description":"Task contrast being analyzed and optimized for. Necessary when more than two conditions are defined in the split_info files. Syntax: --contrast 'CON1-CON2,CON2-CON3', where CON1, CON2 are condition names (The condition number may be used instead, e.g. –contrast 1-2,2-3 ). Default is --contrast 1-2. (See Subsection 4.ii for more details)  If you are doing a single condition ‘nocontrast’, this is omitted. NOTE: event-related analysis is *always* relative to baseline, e.g. --contrast “CON1-baseline”, as it is modelling HRF shape relative to baseline BOLD signal. (oppni --contrast option)"
+            "description":"Task contrast being analyzed and optimized for. Necessary when more than two conditions are defined in the split_info files. Syntax: --contrast 'CON1-CON2,CON2-CON3', where CON1, CON2 are condition names (The condition number may be used instead, e.g. –contrast 1-2,2-3 ). Default is --contrast 1-2. (See Subsection 4.ii for more details)  If you are doing a single condition, choose ‘None’, whence this is omitted. NOTE: event-related analysis is *always* relative to baseline, e.g. --contrast “CON1-baseline”, as it is modelling HRF shape relative to baseline BOLD signal. (oppni --contrast option)"
          },
          {
             "command-line-flag": "--vasc_mask",
@@ -216,8 +222,7 @@
             "optional": true, 
             "value-choices":[
 		"yes",
-		"no",
-		""
+		"no"
 	     ],
             "default-value": "yes",
             "id": "control_motion_artifact", 
@@ -231,8 +236,7 @@
             "optional": true, 
             "value-choices":[
 		"yes",
-		"no",
-		""
+		"no"
 	     ],
             "default-value": "no",
             "id": "control_wm_bias", 
