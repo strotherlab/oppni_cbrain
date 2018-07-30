@@ -3,5 +3,6 @@
     "in_file": "./Sample_Input_File.txt",
     "pipeline_file": "./Sample_pipeline_file.txt",
     "analysis_type": "LDA",
-    "reference_file": "./Sample_reference.nii"
+    "reference_file": "./Sample_reference.nii",
+    "deoblique": true
 }
