@@ -1,9 +1,10 @@
 {
-    "name": "testboutique",
+    "name": "OPPNI_test",
     "tool-version": "1.0.0",
     "schema-version": "0.5",
     "description": "Boutique JSON Descriptor for the TEST tool.",
-    "command-line": "python [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 4",
+    "author":"Strother Lab, Baycrest",
+    "command-line": "echo python [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 4; python [OPPNI_LOCATION] [INPUT_FILE] [PIPELINE_FILE] [ANALYSIS_TYPE] [REFERENCE_FILE] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 4",
     "container-image":{
             "image": "andrewlofts/oppni_cbrain",
             "index": "docker://", 
@@ -14,8 +15,12 @@
             "type": "String", 
             "optional": true, 
             "id": "oppni_location", 
+            "value-choices":[
+		"/planets/mars.py",
+		"/oppni/cPRONTO/oppni.py"
+	     ],
             "name": "OPPNI file",
-            "default-value": "./oppni/cPRONTO/oppni.py",
+            "default-value": "/oppni/cPRONTO/oppni.py",
             "description":"Path to the oppni.py version you are using, example ./oppni/cPRONTO/oppni.py"
          },
          {
@@ -246,11 +251,31 @@
             "name": "Output the nii also",
             "description":"Whether to output spms for all the optimal pipelines. (oppni --output_nii_also option)"
           } ],
+    "tests":[{
+            "name": "Test1",
+            "invocation":{
+                 "oppni_location": "/planets/mars.py",
+                 "in_file": "./Sample_Input_File.txt",
+                 "pipeline_file": "./Sample_pipeline_file.txt",
+                 "analysis_type": "LDA",
+                 "reference_file": "./Sample_reference.nii",
+                 "deoblique": true
+            },
+           "assertions":{
+                "exit-code": 0
+            }
+         }],
     "output-files":[{
             "description": "Log of the oppni status check of the project, existence implies the complete job was successfull. Otherwise a log file with a different name is saved.", 
-            "path-template": "Task_Complete_CBRAIN.txt", 
+            "path-template": "./Task_Complete_CBRAIN.txt", 
             "optional": false, 
             "id": "completion_file_indicator", 
             "name": "Completion File Indicator"
-         }]
+         }],
+    "error-codes": [
+        {
+            "code": 2,
+            "description": "Error Code 2: Path to File inside Docker does not exist!"
+        }
+    ]
 }
