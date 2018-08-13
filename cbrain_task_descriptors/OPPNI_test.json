@@ -263,7 +263,7 @@
                  "analysis_type": "LDA",
                  "reference_file": "./Sample_reference.nii",
                  "deoblique": true,
-                 "tpattern": "'auto_hdr'"
+                 "tpattern": "auto_hdr"
             },
            "assertions":{
                 "exit-code": 0
