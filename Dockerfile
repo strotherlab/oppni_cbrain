@@ -5,7 +5,7 @@ FROM ubuntu:trusty
 # No bids validation...
 
 ## Install the validator
-RUN apt-get update 
+RUN    apt-get update 
 RUN    apt-get install -y curl 
 RUN    curl -sL https://deb.nodesource.com/setup_4.x | bash - 
 RUN    apt-get remove -y curl 
@@ -27,7 +27,7 @@ RUN    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # FSL (bids/base_fsl)
 #####################################
-RUN apt-get update 
+RUN    apt-get update 
 RUN    apt-get install -y curl 
 RUN    curl -sSL http://neuro.debian.net/lists/trusty.us-ca.full >> /etc/apt/sources.list.d/neurodebian.sources.list 
 RUN    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 
@@ -74,8 +74,8 @@ RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
 #RUN apt-get install python 
 
 # Gets Octave
-RUN sudo apt-get install software-properties-common
-RUN sudo add-apt-repository ppa:octave/stable
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:octave/stable
 RUN apt-get update
 RUN apt-get install -qy octave
 
