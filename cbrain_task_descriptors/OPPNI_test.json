@@ -90,9 +90,8 @@
 		"seq+z",
 		"seq-z",
 		"auto_hdr",
-		""
 	     ],
-            "default-value": "",
+            "default-value": "auto_hdr",
             "id": "tpattern", 
             "name": "T Pattern ",
             "description":"Defines axial slices acquisition order for slice-timing correction - this must be specified whenever slice timing correction is requested. (oppni --TPATERN option)"

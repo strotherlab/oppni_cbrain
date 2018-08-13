@@ -77,9 +77,8 @@ RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:octave/stable
 RUN apt-get update
-RUN apt-get install -qy octave
+RUN apt-get install -qy octave liboctave-dev
 
-#RUN  apt-get install -qy octave
 
 
 #OPPNI IS DOCKED!
