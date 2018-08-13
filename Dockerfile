@@ -74,6 +74,7 @@ RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
 #RUN apt-get install python 
 
 # Gets Octave
+RUN sudo apt-get install software-properties-common
 RUN sudo add-apt-repository ppa:octave/stable
 RUN apt-get update
 RUN apt-get install -qy octave
