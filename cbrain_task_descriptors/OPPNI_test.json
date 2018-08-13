@@ -81,15 +81,15 @@
             "command-line-flag": "--TPATTERN",
             "value-key": "[TPATTERN]", 
             "type": "String", 
-            "optional": true, 
+            "optional": false, 
             "value-choices":[
-		"'alt+z'",
-		"'alt+z2'",
-		"'alt-z'",
-		"'alt-z2'",
-		"'seq+z'",
-		"'seq-z'",
-		"'auto_hdr'"
+		"alt+z",
+		"alt+z2",
+		"alt-z",
+		"alt-z2",
+		"seq+z",
+		"seq-z",
+		"auto_hdr"
 	     ],
             "default-value": "auto_hdr",
             "id": "tpattern", 
@@ -262,7 +262,8 @@
                  "pipeline_file": "./Sample_pipeline_file.txt",
                  "analysis_type": "LDA",
                  "reference_file": "./Sample_reference.nii",
-                 "deoblique": true
+                 "deoblique": true,
+                 "tpattern": "'auto_hdr'"
             },
            "assertions":{
                 "exit-code": 0
