@@ -74,7 +74,11 @@ RUN git clone --branch octave https://github.com/AndrewLofts/oppni.git
 #RUN apt-get install python 
 
 # Gets Octave
-RUN  apt-get install -qy octave
+RUN add-apt-repository ppa:octave/stable
+RUN apt update
+RUN sudo apt install octave
+
+#RUN  apt-get install -qy octave
 
 
 #OPPNI IS DOCKED!
