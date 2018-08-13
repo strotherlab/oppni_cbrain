@@ -258,7 +258,7 @@
     "tests":[{
             "name": "Test1",
             "invocation":{
-                 "oppni_location": "/planets/mars.py",
+                 "oppni_location": "/oppni/cPRONTO/oppni.py",
                  "in_file": "./Sample_Input_File.txt",
                  "pipeline_file": "./Sample_pipeline_file.txt",
                  "analysis_type": "LDA",
