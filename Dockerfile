@@ -79,7 +79,7 @@ RUN add-apt-repository ppa:octave/stable
 RUN apt-get update
 RUN apt-get install -qy octave liboctave-dev
 RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
-COPY .octaverc ~./
+COPY .octaverc ~/
 
 
 
