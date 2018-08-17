@@ -1,9 +1,7 @@
 {
     "oppni_location": "/oppni/cPRONTO/oppni.py",
-    "in_file": "./Sample_Input_File.txt",
-    "pipeline_file": "./Sample_pipeline_file.txt",
+    "data_path": "/home/adlofts/RecYng_Data",
     "analysis_type": "LDA",
-    "reference_file": "./Sample_reference.nii",
     "deoblique": true,
     "tpattern": "auto_hdr"
 }

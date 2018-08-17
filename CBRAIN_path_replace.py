@@ -37,8 +37,8 @@ def main():
             line_text.append(line.strip())
 
     # Make and Write a Modified Input File
-    #input_file_mod = pjoin(pdirname(input_file_og),os.path.splitext(pbasename(input_file_og))[0] + '_cbrain.txt')
-    input_file_mod = pjoin(pdirname(input_file_og),pbasename(input_file_og) + '_cbrain.txt')
+    input_file_mod = pjoin(pdirname(input_file_og),os.path.splitext(pbasename(input_file_og))[0] + '_cbrain.txt')
+    #input_file_mod = pjoin(pdirname(input_file_og),pbasename(input_file_og) + '_cbrain.txt')
     with open(input_file_mod, 'w+') as ipf_mod:
         for idx in range(len(line_text)):
             mod_line_text = line_text[idx].replace("/CBRAIN_PROCESSING_LOCATION", real_cbrain_path)
