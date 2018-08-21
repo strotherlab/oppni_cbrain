@@ -79,8 +79,9 @@ RUN add-apt-repository ppa:octave/stable
 RUN apt-get update
 RUN apt-get install -qy octave liboctave-dev
 RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
+RUN mkdir /cbrain/
 COPY .octaverc $HOME
-COPY CBRAIN_path_replace.py /cbrain
+COPY CBRAIN_path_replace.py /cbrain/
 
 
 
