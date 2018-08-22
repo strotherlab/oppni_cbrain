@@ -3,5 +3,6 @@
     "data_path": "/home/adlofts/RecYng_Data",
     "analysis_type": "LDA",
     "deoblique": true,
-    "tpattern": "auto_hdr"
+    "tpattern": "auto_hdr",
+    "contrast": "task_A-baseline"
 }
