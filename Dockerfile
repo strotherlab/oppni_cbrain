@@ -64,10 +64,8 @@ ENV PATH $AFNI_PATH:$FSL_PATH:$OPPNI_PATH:$PATH
 # Git
 RUN apt-get update
 RUN apt-get install -qy git
-# TAKE A TEST REPO THATS PUBLIC FOR NOW
-# RUN git clone https://github.com/AndrewLofts/planets.git
 # OPPNI IS PRIVATE AT THE MOMENT!
-RUN git clone --branch frontenac_integration https://github.com/AndrewLofts/oppni.git
+RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 #RUN git clone --branch frontenac_integration https://github.com/raamana/oppni.git
 
 # Python
