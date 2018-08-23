@@ -1,0 +1,41 @@
+display('adding OPPNI related paths to OCTAVE path')
+display('Preparing for CBRAIN task')
+addpath(genpath('/oppni/scripts_matlab'))
+addpath(genpath('/oppni/extra'))
+addpath(genpath('/usr/share/octave/packages'))
+
+% Modify the --traditional settings
+try
+        OCTAVE_VERSION;
+
+        % Load the forge packages to substitude toolboxes
+        pkg load io
+        pkg load control
+        pkg load struct
+        pkg load statistics
+        pkg load signal
+        pkg load optim
+        disp('Octave Packages Loaded');
+
+        % Traditional modifications
+        disp('Making traditional Octave to Matlab Convertion');
+
+        save_default_options("-mat7-binary");
+	disp('Changing default save to matlab version 7 -mat7-binary');
+
+        disable_range(false);
+        disp('Disable_range was turned to false to correct median BUG');
+
+        confirm_recursive_rmdir(false);
+        disp('Allowing rm -r commands without confirmation');         
+
+        if exist ('do_braindead_shortcircuit_evaluation','builtin')
+             do_braindead_shortcircuit_evaluation(true);
+             disp('Enabling Matlab short cicuit evaluations');
+        end
+
+
+catch
+        disp('No Octave version Found or Packages not installed');
+
+end
