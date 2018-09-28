@@ -50,7 +50,7 @@ ENV FSLOUTPUTTYPE=NIFTI_GZ
 
 # Install virtual dispaly framebuffer for X
 ###########################################
-RUN apt-get install xvfb
+RUN apt-get install -y xvfb
 RUN Xvfb :88 -screen 0 1024x768x24 >& /dev/null &
 RUN setenv DISPLAY :88
 
