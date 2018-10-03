@@ -52,8 +52,9 @@ ENV FSLOUTPUTTYPE=NIFTI_GZ
 ###########################################
 RUN apt-get update
 RUN apt-get install -y xvfb
-RUN Xvfb :88 -screen 0 1024x768x24 >& /dev/null &
-ENV DISPLAY=":88"
+# invoke xvfb at run time
+#Xvfb :88 -screen 0 1024x768x24 >& /dev/null &
+#export DISPLAY=':88'
 
 
 # OPPNI related
