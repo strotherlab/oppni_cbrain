@@ -254,7 +254,7 @@
             "optional": false, 
             "id": "OPPNI_Results", 
             "name": "OPPNI Results"
-         },],
+         }],
     "error-codes": [
         {
             "code": 2,
