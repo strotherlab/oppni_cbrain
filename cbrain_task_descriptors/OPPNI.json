@@ -243,12 +243,18 @@
             }
          }],
     "output-files":[{
-            "description": "Log of the oppni status check of the project, existence implies the complete job was successfull. Otherwise a log file with a different name is saved.", 
+            "description": "Completion check for the project, existence implies the complete job was successfull.", 
             "path-template": "[DATA_PATH]/Task_Complete_CBRAIN.txt", 
             "optional": false, 
             "id": "completion_file_indicator", 
             "name": "Completion File Indicator"
-         }],
+         }, {
+            "description": "OPPNI pipeline results.", 
+            "path-template": "[DATA_PATH]/project_folder", 
+            "optional": false, 
+            "id": "OPPNI_Results", 
+            "name": "OPPNI Results"
+         },],
     "error-codes": [
         {
             "code": 2,
