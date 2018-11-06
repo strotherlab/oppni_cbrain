@@ -10,6 +10,9 @@
             "index": "docker://", 
             "type": "singularity"
           },
+    "suggested-resources": {
+        "walltime-estimate": 225000
+    },
     "inputs":[{
             "value-key": "[OPPNI_LOCATION]", 
             "type": "String", 
