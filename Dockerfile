@@ -81,7 +81,8 @@ RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 
 # Gets Octave
 RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:octave/stable
+#RUN add-apt-repository ppa:octave/stable
+RUN add-apt-repository universe:octave/cosmic
 RUN apt-get update
 RUN apt-get install -qy octave liboctave-dev
 RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
