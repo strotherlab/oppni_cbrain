@@ -84,7 +84,7 @@ RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 # Gets Octave
 RUN apt-get install -y software-properties-common
 #RUN add-apt-repository ppa:octave/stable
-RUN add-apt-repository universe
+RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic universe"
 RUN apt-get update
 RUN apt-get install -qy octave/cosmic liboctave-dev
 RUN apt-get install -y octave-io/cosmic octave-control/cosmic octave-struct/cosmic octave-statistics/cosmic octave-signal/cosmic octave-optim/cosmic
