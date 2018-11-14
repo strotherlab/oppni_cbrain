@@ -19,7 +19,8 @@ RUN npm install -g bids-validator@0.19.2
 RUN apt-get update 
 RUN    apt-get install -y curl
 RUN    curl -sSL http://neuro.debian.net/lists/trusty.us-ca.full >> /etc/apt/sources.list.d/neurodebian.sources.list 
-RUN    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 
+#RUN    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9
+RUN    apt-key adv --recv-keys --keyserver hkp://ha.pool.sks-keyservers.net:80 0xA5D32F012649A5A9 
 RUN    apt-get update
 RUN    apt-get remove -y curl
 RUN    apt-get install -y afni
@@ -30,7 +31,8 @@ RUN    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN    apt-get update 
 RUN    apt-get install -y curl 
 RUN    curl -sSL http://neuro.debian.net/lists/trusty.us-ca.full >> /etc/apt/sources.list.d/neurodebian.sources.list 
-RUN    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9 
+#RUN    apt-key adv --recv-keys --keyserver hkp://pgp.mit.edu:80 0xA5D32F012649A5A9
+RUN    apt-key adv --recv-keys --keyserver hkp://ha.pool.sks-keyservers.net:80 0xA5D32F012649A5A9 
 RUN    apt-get update 
 RUN    apt-get remove -y curl 
 RUN    apt-get install -y fsl-core
