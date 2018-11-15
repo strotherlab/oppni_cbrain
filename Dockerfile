@@ -1,10 +1,7 @@
 # FROM
 #######################################################################
 # Call the docker file for afni to do the preliminary set up of ubuntu:trusty
-#FROM ubuntu:trusty
-
-# Call the docker file for afni to do the preliminary set up of ubuntu:cosmic
-FROM ubuntu:cosmic
+FROM ubuntu:trusty
 
 # No bids validation...
 
