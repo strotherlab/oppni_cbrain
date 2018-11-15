@@ -1,7 +1,11 @@
 # FROM
 #######################################################################
 # Call the docker file for afni to do the preliminary set up of ubuntu:trusty
-FROM ubuntu:trusty
+#FROM ubuntu:trusty
+
+# Call the docker file for afni to do the preliminary set up of ubuntu:cosmic
+FROM ubuntu:cosmic
+
 # No bids validation...
 
 ## Install the validator
@@ -81,22 +85,26 @@ RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 # Python
 #RUN apt-get install python 
 
-# Gets Octave
+# Gets Octave/stable
 RUN apt-get install -y software-properties-common
-#RUN add-apt-repository ppa:octave/stable
-RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic universe"
+RUN add-apt-repository ppa:octave/stable
 RUN apt-get update
-RUN apt-get install -qy octave/cosmic liboctave-dev
-RUN apt-get install -y octave-io/cosmic octave-control/cosmic octave-struct/cosmic octave-statistics/cosmic octave-signal/cosmic octave-optim/cosmic
+RUN apt-get install -qy octave liboctave-dev
+RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
+
+# Gets Octave/cosmic
+#RUN apt-get install -y software-properties-common
+#RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic universe"
+#RUN apt-get update
+#RUN apt-get install -qy octave/cosmic liboctave-dev
+#RUN apt-get install -y octave-io/cosmic octave-control/cosmic octave-struct/cosmic octave-statistics/cosmic octave-signal/cosmic octave-optim/cosmic
+
 
 RUN mkdir /cbrain/
 ENV OCTAVE_VERSION_INITFILE=/cbrain/.octaverc
 COPY .octaverc /cbrain/
 COPY CBRAIN_path_replace.py /cbrain/
 RUN  chmod a+x /cbrain/CBRAIN_path_replace.py
-
-
-
 
 
 #OPPNI IS DOCKED!
