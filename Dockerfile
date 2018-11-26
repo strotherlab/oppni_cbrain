@@ -1,7 +1,7 @@
 # FROM
 #######################################################################
 # Call the docker file for afni to do the preliminary set up of ubuntu:trusty
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 
 # No bids validation...
 
@@ -83,13 +83,20 @@ RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 #RUN apt-get install python 
 
 # Gets Octave/stable
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:octave/stable
-RUN apt-get update
-RUN apt-get install -qy octave liboctave-dev
-RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
+#RUN apt-get install -y software-properties-common
+#RUN add-apt-repository ppa:octave/stable
+#RUN apt-get update
+#RUN apt-get install -qy octave liboctave-dev
+#RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
 
-# Gets Octave/cosmic
+# Lets build the lastes version of Octave
+#########################################
+#get tools and libs
+#RUN apt-get install gcc g++ gfortran make libblas-dev liblapack-dev libpcre3-dev libarpack2-dev libcurl4-gnutls-dev epstool libfftw3-dev transfig libfltk1.3-dev libfontconfig1-dev libfreetype6-dev libgl2ps-dev libglpk-dev libreadline-dev gnuplot-x11 libgraphicsmagick++1-dev libhdf5-serial-dev openjdk-8-jdk libsndfile1-dev llvm-dev lpr texinfo libgl1-mesa-dev libosmesa6-dev pstoedit portaudio19-dev libqhull-dev libqrupdate-dev libqscintilla2-dev libqt4-dev libqtcore4 libqtwebkit4 libqt4-network libqtgui4 libqt4-opengl-dev libsuitesparse-dev texlive libxft-dev zlib1g-dev autoconf automake bison flex gperf gzip icoutils librsvg2-bin libtool perl rsync tar
+
+#download source tar
+#RUN apt-get 
+
 #RUN apt-get install -y software-properties-common
 #RUN add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ cosmic universe"
 #RUN apt-get update
