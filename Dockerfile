@@ -15,6 +15,9 @@ FROM ubuntu:cosmic
 
 #RUN npm install -g bids-validator@0.19.2
 
+RUN apt-get update
+RUN apt-get install gnupg
+
 # AFNI (bids/base_afni)
 ####################################
 RUN apt-get update 
