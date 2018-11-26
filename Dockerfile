@@ -1,7 +1,7 @@
 # FROM
 #######################################################################
 # Call the docker file for afni to do the preliminary set up of ubuntu:trusty
-FROM ubuntu:trusty
+FROM ubuntu:cosmic
 
 # No bids validation...
 
@@ -83,11 +83,11 @@ RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 #RUN apt-get install python 
 
 # Gets Octave/stable
-#RUN apt-get install -y software-properties-common
-#RUN add-apt-repository ppa:octave/stable
-#RUN apt-get update
-#RUN apt-get install -qy octave liboctave-dev
-#RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:octave/stable
+RUN apt-get update
+RUN apt-get install -qy octave liboctave-dev
+RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
 
 # Lets build the lastes version of Octave
 #########################################
