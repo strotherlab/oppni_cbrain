@@ -6,14 +6,14 @@ FROM ubuntu:cosmic
 # No bids validation...
 
 ## Install the validator
-RUN    apt-get update 
-RUN    apt-get install -y curl 
-RUN    curl -sL https://deb.nodesource.com/setup_4.x | bash - 
-RUN    apt-get remove -y curl 
-RUN    apt-get install -y nodejs 
-RUN    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#RUN    apt-get update 
+#RUN    apt-get install -y curl 
+#RUN    curl -sL https://deb.nodesource.com/setup_4.x | bash - 
+#RUN    apt-get remove -y curl 
+#RUN    apt-get install -y nodejs 
+#RUN    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN npm install -g bids-validator@0.19.2
+#RUN npm install -g bids-validator@0.19.2
 
 # AFNI (bids/base_afni)
 ####################################
