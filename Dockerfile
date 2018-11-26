@@ -1,7 +1,7 @@
 # FROM
 #######################################################################
 # Call the docker file for afni to do the preliminary set up of ubuntu:trusty
-FROM ubuntu:xenial
+FROM ubuntu:trusty
 
 # No bids validation...
 
