@@ -86,7 +86,7 @@ RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 # Gets Octave/stable
 ##########################################
 RUN apt-get install -y software-properties-common
-RUN apt-get install -y libQt5Core.so.5
+RUN apt-get install -y libqt5core5a
 RUN apt-get update
 
 RUN apt-get install -qy octave liboctave-dev
