@@ -80,8 +80,18 @@ RUN apt-get install -qy git
 RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 #RUN git clone --branch frontenac_integration https://github.com/raamana/oppni.git
 
-# Python
-#RUN apt-get install python 
+# Python 2 & 3
+#########################################
+RUN apt-get install python-pip
+RUN pip3 install distutils
+# default to 3.6
+RUN ln -sfn /usr/bin/python3.6 /usr/bin/python
+RUN apt-get install python3-pip
+RUN pip3 install distutils 
+
+#An editor
+#########################################
+RUN apt-get install nano
 
 # Gets Octave/stable
 ##########################################
@@ -91,6 +101,10 @@ RUN apt-get update
 
 RUN apt-get install -qy octave liboctave-dev
 RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
+
+
+#ADD stuff to bashrc
+#RUN echo 'Add this line to bashrc' >> ~/.bashrc
 
 RUN mkdir /cbrain/
 ENV OCTAVE_VERSION_INITFILE=/cbrain/.octaverc
