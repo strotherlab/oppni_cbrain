@@ -83,7 +83,7 @@ RUN git clone --branch frontenac_integration https://github.com/mprati/oppni.git
 # Python 2 & 3
 #########################################
 RUN apt-get install -y python-pip
-RUN yes | pip3 install distutils
+RUN yes | pip install distutils
 # default to 3.6
 RUN ln -sfn /usr/bin/python3.6 /usr/bin/python
 RUN apt-get install -y python3-pip
