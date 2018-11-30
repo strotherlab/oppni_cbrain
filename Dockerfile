@@ -102,9 +102,9 @@ RUN apt-get update
 RUN apt-get install -qy octave liboctave-dev
 RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
 
+#fixup libQt5Core.so.5
 RUN apt-get install libqt5core5a --reinstall
-RUN apt-get update
-
+RUN strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
 
 #ADD stuff to bashrc
 #RUN echo 'Add this line to bashrc' >> ~/.bashrc
