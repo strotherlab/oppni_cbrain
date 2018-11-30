@@ -102,6 +102,9 @@ RUN apt-get update
 RUN apt-get install -qy octave liboctave-dev
 RUN apt-get install -y octave-io octave-control octave-struct octave-statistics octave-signal octave-optim
 
+RUN apt-get install libqt5core5a --reinstall
+RUN apt-get update
+
 
 #ADD stuff to bashrc
 #RUN echo 'Add this line to bashrc' >> ~/.bashrc
