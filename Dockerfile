@@ -102,11 +102,11 @@ RUN apt-get install -y g++ make gawk gfortran gnuplot texi2html icoutils libxft-
 RUN apt-get install -y qtbase5-dev qttools5-dev libqscintilla2-qt5-dev
 
 RUN apt-get install -y wget
-RUN mkdir /octave_source/
-RUN cd /octave_source
+RUN mkdir -p /octave_source/
+RUN cd /octave_source/
 RUN wget https://ftp.gnu.org/gnu/octave/octave-4.4.1.tar.gz
 RUN wget https://ftp.gnu.org/gnu/octave/octave-4.4.1.tar.gz.sig
-RUN tar -xzf octave-4.4.1.tar.gz
+RUN tar -xzf octave-4.4.1.tar.gz -C /octave_source/
 RUN cd ~
 
 # Gets the available Compiled Octave/stable
