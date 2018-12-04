@@ -93,7 +93,15 @@ RUN apt-get install -y python3-distutils
 #########################################
 RUN apt-get install nano
 
-# Gets Octave/stable
+
+# Get Tools needed if you want to build Octave from source
+##########################################################
+# core prereqs
+RUN apt-get install -y g++ make gawk gfortran gnuplot texi2html icoutils libxft-dev gperf flex libbison-dev libqhull-dev libglpk-dev libcurl4-gnutls-dev librsvg2-dev libqrupdate-dev libgl2ps-dev libarpack2-dev libreadline-dev libncurses-dev libhdf5-dev llvm-dev default-jdk texinfo libfftw3-dev libgraphicsmagick++1-dev libfreeimage-dev transfig epstool librsvg2-bin libosmesa6-dev libsndfile-dev lzip libatlas-base-dev liblapack-dev libsundials-dev
+# graphical prereqs
+RUN apt-get install -y qtbase5-dev qttools5-dev libqscintilla2-qt5-dev
+
+# Gets the available Compiled Octave/stable
 ##########################################
 RUN apt-get install -y software-properties-common
 RUN apt-get install -y libqt5core5a
