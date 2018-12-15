@@ -94,20 +94,33 @@ RUN apt-get install -y python3-distutils
 RUN apt-get install nano
 
 
-# Get Tools needed if you want to build Octave from source
-##########################################################
+# Get Tools needed if you want to build Octave from source uncomment the following
+##################################################################################
 # core prereqs
-RUN apt-get install -y g++ make gawk gfortran gnuplot texi2html icoutils libxft-dev gperf flex libbison-dev libqhull-dev libglpk-dev libcurl4-gnutls-dev librsvg2-dev libqrupdate-dev libgl2ps-dev libarpack2-dev libreadline-dev libncurses-dev libhdf5-dev llvm-dev default-jdk texinfo libfftw3-dev libgraphicsmagick++1-dev libfreeimage-dev transfig epstool librsvg2-bin libosmesa6-dev libsndfile-dev lzip libatlas-base-dev liblapack-dev libsundials-dev
+#RUN apt-get install -y g++ make gawk gfortran gnuplot texi2html icoutils libxft-dev gperf flex libbison-dev libqhull-dev libglpk-dev libcurl4-gnutls-dev librsvg2-dev libqrupdate-dev libgl2ps-dev libarpack2-dev libreadline-dev libncurses-dev libhdf5-dev llvm-dev default-jdk texinfo libfftw3-dev libgraphicsmagick++1-dev libfreeimage-dev transfig epstool librsvg2-bin libosmesa6-dev libsndfile-dev lzip libatlas-base-dev liblapack-dev libsundials-dev
+
 # graphical prereqs
-RUN apt-get install -y qtbase5-dev qttools5-dev libqscintilla2-qt5-dev
+#RUN apt-get install -y qtbase5-dev qttools5-dev libqscintilla2-qt5-dev
 
 RUN apt-get install -y wget
 RUN mkdir -p /octave_source/
 RUN cd /octave_source/
-RUN wget https://ftp.gnu.org/gnu/octave/octave-4.4.1.tar.gz
-RUN wget https://ftp.gnu.org/gnu/octave/octave-4.4.1.tar.gz.sig
-RUN tar -xzf octave-4.4.1.tar.gz -C /octave_source/
-RUN cd ~
+#RUN wget https://ftp.gnu.org/gnu/octave/octave-4.4.1.tar.gz
+#RUN wget https://ftp.gnu.org/gnu/octave/octave-4.4.1.tar.gz.sig
+#RUN tar -xzf octave-4.4.1.tar.gz -C /octave_source/
+#RUN mkdir -p ~/.local/octave
+#RUN cd /octave_source/octave-4.4.1/
+#RUN ./configure --prefix=$HOME/.local/octave
+
+# We are now all set up to compile Octave
+# Uncomment the following to complie and install GNU Octave.
+# May take 30-60 minutes 
+#########################################################
+#RUN make -j -l4 CFLAGS=-O CXXFLAGS=-O LDFLAGS=
+#RUN make install
+
+#To use this new GNU Octave by addthe folowing to ~/.bash_aliases
+#alias octave="$HOME/.local/octave/bin/octave -q"
 
 # Gets the available Compiled Octave/stable
 ##########################################
