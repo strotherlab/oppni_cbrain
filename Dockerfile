@@ -89,6 +89,11 @@ RUN ln -sfn /usr/bin/python3.6 /usr/bin/python
 RUN apt-get install -y python3-pip
 RUN apt-get install -y python3-distutils
 
+#Install pybids for use later
+#########################################
+RUN pip3 install --upgrade pip
+RUN pip3 install pybids
+
 #An editor
 #########################################
 RUN apt-get install nano
