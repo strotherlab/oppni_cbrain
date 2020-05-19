@@ -4,7 +4,8 @@
 # FROM ubuntu:trusty
 #FROM ubuntu:cosmic no longer supported on dockerhub
 
-#eoan ubunto 19.10 minimal 
+#eoan ubunto 19.10 minimal
+ARG DEBIAN_FRONTEND=noninteractive 
 FROM ubuntu:eoan
 
 # No bids validation...
