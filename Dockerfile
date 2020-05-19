@@ -1,7 +1,11 @@
 # FROM
 #######################################################################
 # Call the docker file for afni to do the preliminary set up of ubuntu:trusty
-FROM ubuntu:cosmic
+# FROM ubuntu:trusty
+#FROM ubuntu:cosmic no longer supported on dockerhub
+
+#eoan ubunto 19.10 minimal 
+FROM ubuntu:eoan
 
 # No bids validation...
 
