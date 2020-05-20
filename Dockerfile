@@ -5,8 +5,8 @@
 #FROM ubuntu:cosmic no longer supported on dockerhub
 
 #eoan ubunto 19.10 minimal
-ARG DEBIAN_FRONTEND=noninteractive 
 FROM ubuntu:eoan
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y tzdata
 
 # No bids validation...
