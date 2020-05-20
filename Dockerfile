@@ -7,6 +7,7 @@
 #eoan ubunto 19.10 minimal
 ARG DEBIAN_FRONTEND=noninteractive 
 FROM ubuntu:eoan
+RUN apt-get update && apt-get install -y tzdata
 
 # No bids validation...
 
