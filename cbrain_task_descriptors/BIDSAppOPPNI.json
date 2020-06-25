@@ -1,15 +1,18 @@
 {
-    "name": "OPPNI_test",
+    "name": "BIDSAppOPPNI",
     "tool-version": "1.0.0",
     "schema-version": "0.5",
-    "description": "Boutique JSON Descriptor for the TEST tool.",
-    "author":"Strother Lab, Baycrest",
-    "command-line": "python3 /cbrain/CBRAIN_path_replace.py [DATA_PATH]/user_input_file.txt [DATA_PATH]; echo python3 [OPPNI_LOCATION] -i [DATA_PATH]/user_input_file_cbrain.txt -c [DATA_PATH]/pipeline_file.txt [ANALYSIS_TYPE] [ANALYSIS_TYPE_ADJUSTMENTS] -r [DATA_PATH]/reference_file.nii [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 2; python3 [OPPNI_LOCATION] -i [DATA_PATH]/user_input_file_cbrain.txt -c [DATA_PATH]/pipeline_file.txt [ANALYSIS_TYPE] [ANALYSIS_TYPE_ADJUSTMENTS] -r [DATA_PATH]/reference_file.nii [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] -e octave --run_locally --numcores 2",
+    "description": "Boutique JSON Descriptor for OPPNI.",
+    "author":"L. Mark Prati,  Strother Lab, Baycrest",
+    "command-line": "Xvfb :88 -screen 0 1024x768x24 >/dev/null 2>&1 & sleep 4; export DISPLAY=':88'; python3 [OPPNI_LOCATION] [BIDS_DIR] [OUTPUT_DIR] [ANALYSIS_LEVEL] [PARTICIPANT_LABEL] [TASK_NAME] [ENVIRONMENT] -c pipeline_file.txt -r Sample_reference.nii [ANALYSIS_TYPE] [ANALYSIS_TYPE_ADJUSTMENTS] [TPATTERN] [PART] [CONVOLVE] [METRIC] [CONTRAST] [VASC_MASK] [NUM_PCS] [KEEPMEAN] [VOXEL_SIZE] [BLURTOFWHM] [DEOBLIQUE] [CONTROL_MOTION_ARTIFACT] [CONTROL_WM_BIAS] [OUPUT_NII_ALSO] --run_locally; status=$?;  kill %1 ; (exit $status)",
     "container-image":{
-            "image": "andrewlofts/oppni_cbrain",
+            "image": "mprati/oppni_cbrain",
             "index": "docker://", 
             "type": "singularity"
           },
+    "suggested-resources": {
+        "walltime-estimate": 225000
+    },
     "inputs":[{
             "value-key": "[OPPNI_LOCATION]", 
             "type": "String", 
@@ -23,13 +26,63 @@
             "description":"Path to the oppni.py version you are using, example ./oppni/cPRONTO/oppni.py"
          },
          {
-            "value-key": "[DATA_PATH]", 
-            "type": "File", 
-            "optional": false, 
-            "id": "data_path", 
-            "name": "Data Path",
-            "description":"Select the Project folder containing all you datafiles (input_file,pipeline_file,IN,STUCT,PHSYIO,TASK)"
+	    "id": "bids_dir",
+	    "name": "BIDS directory",
+	    "type": "File",
+	    "description": "The directory with the input dataset formatted according to the BIDS standard. (default OPPNI pipeline and refrence files should also be placed here)",
+	    "value-key": "[BIDS_DIR]",
+	    "optional": false
+	  },
+	  {
+	    "id": "output_dir_name",
+	    "name": "Output directory name",
+	    "type": "String",
+	    "description": "The directory where the output files should be stored. If you are running a group level analysis, this folder should be prepopulated with the results of the participant level analysis.",
+	    "value-key": "[OUTPUT_DIR]",
+	    "optional": false
+	  },
+          {
+            "command-line-flag": "-e",
+            "value-key": "[ENVIRONMENT]",
+            "type": "String",
+            "optional": false,
+            "value-choices":[
+                "octave",
+                "matlab"
+             ],
+            "default-value": "octave",
+            "id": "environment",
+            "name": "Environment",
+            "description":"Environment in which the pieline will be executed"
          },
+
+          {
+            "command-line-flag": "--analysis_level",
+            "value-key": "[ANALYSIS_LEVEL]", 
+            "type": "String", 
+            "optional": true, 
+            "id": "analysis_level", 
+            "name": "Analysis_Level",
+            "description":"Level of analysis that will be performed. Must begin with either 'participant' or 'group'. Multiple participant level analysis can be run independently (in parallel) using the same output_dir."
+         },        
+         {
+            "command-line-flag": "--participant_label",
+            "value-key": "[PARTICIPANT_LABEL]", 
+            "type": "String", 
+            "optional": true, 
+            "id": "participant_label", 
+            "name": "Participant_Label",
+            "description":"The label(s) of the participant(s) to be analyzed. Label(s) corresponds to sub-<participant_label> from the BIDS spec (does not include 'sub-'). If not provided all subjects will be analyzed. Multiple participants can be specified with a space or comma separated list."
+         },        
+         {
+            "command-line-flag": "--taskname",
+            "value-key": "[TASK_NAME]", 
+            "type": "String", 
+            "optional": true, 
+            "id": "taskname", 
+            "name": "Taskname",
+            "description":"Name of the fMRI task you want to analyze. Note all tasks in the data set will processed if not specified."
+         },        
          {
             "command-line-flag": "-a",
             "value-key": "[ANALYSIS_TYPE]", 
@@ -76,20 +129,7 @@
             "name": "T Pattern ",
             "description":"Defines axial slices acquisition order for slice-timing correction - this must be specified whenever slice timing correction is requested. (oppni --TPATERN option)"
          }, 
-         {
-            "command-line-flag": "-p",
-            "value-key": "[PART]", 
-            "type": "Number", 
-            "optional": true, 
-            "maximum": 4,
-            "minimum": 0,
-            "default-value": 0,
-            "id": "part", 
-            "name": "Start at Point ",
-            "description":"Only do specific parts of full optimization pipeline. 0= do all three steps (this is the default, and recommended). 1= run all pipelines and produce metrics. 2= select optimal pipelines based on metrics (must have already run part-1). 3= do spatial normalization of optimized results (must have already run parts-1,2). 4=run QC only (choose this only when you have existing processing that was successfully completed from earlier runs, and also supply the flag --use_prev_processing_for_QC). (oppni -p option)"
-         },         
-         {
-            "command-line-flag": "--convolve",
+         {  "command-line-flag": "--convolve",
             "value-key": "[CONVOLVE]", 
             "type": "Number", 
             "optional": true, 
@@ -229,25 +269,18 @@
             "name": "Output the nii also",
             "description":"Whether to output spms for all the optimal pipelines. (oppni --output_nii_also option)"
           } ],
-    "tests":[{
-            "name": "Test1",
-            "invocation":{
-                 "oppni_location": "/oppni/cPRONTO/oppni.py",
-                 "data_path": "[DATA_PATH]/RecYng_Data",
-                 "analysis_type": "LDA",
-                 "deoblique": true,
-                 "tpattern": "auto_hdr"
-            },
-           "assertions":{
-                "exit-code": 0
-            }
-         }],
     "output-files":[{
-            "description": "Log of the oppni status check of the project, existence implies the complete job was successfull. Otherwise a log file with a different name is saved.", 
-            "path-template": "[DATA_PATH]/Task_Complete_CBRAIN.txt", 
+            "description": "Completion check for the project, existence implies the complete job was successfull.", 
+            "path-template": "[OUTPUT_DIR]/Task_Complete_CBRAIN.txt", 
             "optional": false, 
             "id": "completion_file_indicator", 
             "name": "Completion File Indicator"
+         }, {
+            "description": "OPPNI pipeline results.", 
+            "path-template": "[OUTPUT_DIR]", 
+            "optional": false, 
+            "id": "OPPNI_Results", 
+            "name": "OPPNI Results"
          }],
     "error-codes": [
         {
